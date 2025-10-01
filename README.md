@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+📋 О проекте
+Система Стройконтроль — это современное веб-приложение для управления строительными проектами, обеспечивающее эффективное взаимодействие между всеми участниками строительного процесса. Приложение предоставляет индивидуальные интерфейсы для трех ключевых ролей с соответствующими правами доступа и функционалом.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+✨ Особенности
+🎯 Ключевые возможности
+🔐 Ролевая система — три уровня доступа с индивидуальными интерфейсами
 
-## Available Scripts
+🎨 Адаптивный дизайн — полная поддержка мобильных устройств
 
-In the project directory, you can run:
+🌙 Темная тема — комфортная работа в любое время суток
 
-### `npm start`
+📱 Mobile-first — оптимизирован для работы на планшетах и смартфонах
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+⚡ Современный стек — React 18, современный JavaScript, CSS Modules
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🛠 Технологический стек
+Frontend: React 18.2.0, JavaScript (ES6+)
 
-### `npm test`
+Стили: CSS3 с кастомными свойствами, Flexbox/Grid
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Сборка: Webpack 5, Babel
 
-### `npm run build`
+Инструменты: ESLint, Git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+👥 Роли пользователей
+1. 🕵️ Инспектор (Inspector)
+Ответственный за контроль качества и соблюдение стандартов
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Функционал:
+📊 Главная панель — обзор текущих проектов и статистики
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+🏢 Управление объектами — контроль за ходом строительства
 
-### `npm run eject`
+⚠️ Работа с замечаниями — фиксация и отслеживание нарушений
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+📅 График проверок — планирование и учет инспекционных visits
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+✅ Согласование проектов — одобрение/отклонение заявок
+2. 👷 Прораб (Foreman)
+Организатор строительных работ на объекте
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Функционал:
+👥 Управление командой — распределение задач между рабочими
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+📦 Контроль материалов — учет поставок и остатков
 
-## Learn More
+🔧 Техническое задание — постановка задач и контроль выполнения
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+📋 Объекты под управлением — мониторинг прогресса по объектам
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+📝 Ежедневная отчетность — фиксация выполненных работ
+3. 🎛️ Диспетчер (ControlService)
+Координатор ресурсов и коммуникаций
 
-### Code Splitting
+Функционал:
+🔄 Распределение ресурсов — оптимальное использование техники и материалов
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+📞 Координация связи — обеспечение взаимодействия между участниками
 
-### Analyzing the Bundle Size
+🚨 Мониторинг инцидентов — оперативное реагирование на проблемы
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+📈 Аналитика и отчеты — сводные данные по всем проектам
 
-### Making a Progressive Web App
+⏰ Планирование — оптимизация графиков и маршрутов
+# Установка зависимостей
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Запуск в режиме разработки
+npm start
+Доступ к приложению
+После запуска приложение будет доступно по адресу:
+http://localhost:3000
 
-### Advanced Configuration
+📱 Браузерная поддержка
+Chrome 90+
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Firefox 88+
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Safari 14+
+Сделано с ❤️ для строительной отрасли
