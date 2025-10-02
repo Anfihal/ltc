@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Objects.css';
 
 const Objects = () => {
     const [activeTab, setActiveTab] = useState('objects');
@@ -22,7 +23,12 @@ const Objects = () => {
         // Здесь можно отправить данные на сервер
     };
 
-    const tabs = ['Объекты', 'Регистрация поставки', 'История поставок', 'Управление графиком поставок'];
+    const tabs = [
+        { id: 'objects', name: 'Объекты' },
+        { id: 'registration', name: 'Регистрация поставки' },
+        { id: 'history', name: 'История поставок' },
+        { id: 'schedule', name: 'График поставок' }
+    ];
 
     return (
         <div className="objects-page">
@@ -42,23 +48,23 @@ const Objects = () => {
 
             {/* Tabs */}
             <div className="objects-tabs">
-                {tabs.map((tab, idx) => (
+                {tabs.map((tab) => (
                     <button
-                        key={idx}
-                        className={`objects-tab ${activeTab === tab.toLowerCase().replace(' ', '-') ? 'active' : ''}`}
-                        onClick={() => setActiveTab(tab.toLowerCase().replace(' ', '-'))}
+                        key={tab.id}
+                        className={`objects-tab ${activeTab === tab.id ? 'active' : ''}`}
+                        onClick={() => setActiveTab(tab.id)}
                     >
-                        {tab}
+                        {tab.name}
                     </button>
                 ))}
             </div>
 
             {/* Main Content based on active tab */}
             <div className="objects-content">
-                {activeTab === 'объекты' && <ObjectsList />}
-                {activeTab === 'регистрация-поставки' && <MaterialRegistration formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />}
-                {activeTab === 'история-поставок' && <DeliveryHistory />}
-                {activeTab === 'управление-графиком-поставок' && <DeliverySchedule />}
+                {activeTab === 'objects' && <ObjectsList />}
+                {activeTab === 'registration' && <MaterialRegistration formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />}
+                {activeTab === 'history' && <DeliveryHistory />}
+                {activeTab === 'schedule' && <DeliverySchedule />}
             </div>
         </div>
     );

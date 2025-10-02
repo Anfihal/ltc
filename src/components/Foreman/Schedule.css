@@ -1,0 +1,1521 @@
+/* Schedule.css - Идеальное автоопределение для всех экранов */
+
+:root {
+    /* Базовый размер для относительных единиц */
+    --base-unit: 1rem;
+
+    /* Относительные цвета */
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #3b82f6;
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+
+    --success: #10b981;
+    --success-light: #34d399;
+    --success-50: #ecfdf5;
+
+    --warning: #f59e0b;
+    --warning-light: #fbbf24;
+    --warning-50: #fffbeb;
+
+    --danger: #ef4444;
+    --danger-light: #f87171;
+    --danger-50: #fef2f2;
+
+    /* Относительные размеры текста */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+
+    /* Относительные отступы */
+    --space-3xs: 0.125rem;
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+
+    /* Относительные радиусы */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+
+    /* Тени */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* Анимации */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+}
+
+/* Темная тема */
+.dark-theme {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-surface: #1f2937;
+    --bg-card: #374151;
+
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+
+    --border-light: #374151;
+    --border-medium: #4b5563;
+    --border-strong: #6b7280;
+}
+
+/* Базовые стили страницы */
+.schedule-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    padding: var(--space-xl);
+
+    /* Fluid typography */
+    font-size: clamp(var(--text-sm), 2.5vw, var(--text-base));
+}
+
+/* Welcome Section */
+.welcome-section {
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+}
+
+.welcome-section h2 {
+    font-size: clamp(var(--text-xl), 5vw, var(--text-3xl));
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+    line-height: 1.2;
+}
+
+.user-role {
+    display: inline-block;
+    background: var(--primary-50);
+    color: var(--primary);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-lg);
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+    font-weight: 600;
+    border: 1px solid var(--primary-100);
+}
+
+.dark-theme .user-role {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-light);
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: var(--space-xl);
+}
+
+.page-title {
+    font-size: clamp(var(--text-lg), 4vw, var(--text-2xl));
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+}
+
+/* Schedule Actions - Улучшенные */
+.schedule-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.schedule-action-btn {
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: var(--primary);
+    color: white;
+}
+
+.schedule-action-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(calc(var(--space-2xs) * -1));
+}
+
+.schedule-action-btn.secondary {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+}
+
+.schedule-action-btn.secondary:hover {
+    background: var(--bg-secondary);
+    border-color: var(--border-strong);
+}
+
+/* Schedule Legend - Улучшенные */
+.schedule-legend {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: clamp(var(--text-xs), 1.8vw, var(--text-sm));
+    color: var(--text-primary);
+}
+
+.legend-color {
+    width: clamp(0.75rem, 3vw, 1rem);
+    height: clamp(0.75rem, 3vw, 1rem);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-medium);
+    flex-shrink: 0;
+}
+
+.legend-color.completed {
+    background: var(--success);
+    border-color: var(--success);
+}
+
+.legend-color.in-progress {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.legend-color.planned {
+    background: var(--bg-surface);
+    border: 2px dashed var(--border-medium);
+}
+
+.legend-color.delayed {
+    background: var(--danger);
+    border-color: var(--danger);
+}
+
+/* Projects Grid - Улучшенные */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+/* Project Card - Улучшенные */
+.project-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(calc(var(--space-xs) * -1));
+    box-shadow: var(--shadow-xl);
+    border-color: var(--border-medium);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--space-2xs);
+    background: var(--primary);
+    z-index: 1;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-lg);
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.project-info {
+    flex: 1;
+    min-width: min(100%, 250px);
+}
+
+.project-name {
+    font-size: clamp(var(--text-lg), 3vw, var(--text-xl));
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+    line-height: 1.3;
+
+    /* Предотвращает слишком длинные заголовки */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.project-address,
+.project-area {
+    font-size: clamp(var(--text-xs), 1.8vw, var(--text-sm));
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    line-height: 1.4;
+}
+
+.project-status {
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.project-status.active {
+    background: var(--success-50);
+    color: var(--success);
+    border: 1px solid var(--success-light);
+}
+
+.project-status.planning {
+    background: var(--warning-50);
+    color: var(--warning);
+    border: 1px solid var(--warning-light);
+}
+
+.project-status.delayed {
+    background: var(--danger-50);
+    color: var(--danger);
+    border: 1px solid var(--danger-light);
+}
+
+.dark-theme .project-status.active {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.dark-theme .project-status.planning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.dark-theme .project-status.delayed {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Project Tasks - Улучшенные */
+.project-tasks {
+    margin-bottom: var(--space-lg);
+}
+
+.tasks-label {
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.tasks-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.task-tag {
+    padding: var(--space-2xs) var(--space-sm);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    line-height: 1.2;
+    transition: all var(--transition-fast);
+}
+
+.task-tag:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(calc(var(--space-2xs) * -1));
+}
+
+/* Project Progress - Улучшенные */
+.project-progress {
+    margin-bottom: var(--space-lg);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.progress-label {
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.progress-value {
+    font-size: clamp(var(--text-sm), 2.5vw, var(--text-base));
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.progress-bar {
+    width: 100%;
+    height: clamp(0.5rem, 1.5vw, 0.75rem);
+    background: var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: var(--radius-lg);
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+/* Project Details - Улучшенные */
+.project-details {
+    margin-bottom: var(--space-lg);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    font-size: clamp(var(--text-xs), 1.8vw, var(--text-sm));
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.detail-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.detail-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Project Stats - Улучшенные */
+.project-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(80px, 100%), 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--space-sm);
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.stat-item:hover {
+    transform: translateY(calc(var(--space-2xs) * -1));
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-number {
+    font-size: clamp(var(--text-lg), 4vw, var(--text-xl));
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2xs);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: clamp(var(--text-xs), 1.5vw, var(--text-sm));
+    color: var(--text-secondary);
+    line-height: 1.2;
+}
+
+/* Project Action - Улучшенные */
+.project-action {
+    width: 100%;
+    padding: var(--space-md);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.project-action:hover {
+    background: var(--primary-hover);
+    transform: translateY(calc(var(--space-2xs) * -1));
+    box-shadow: var(--shadow-md);
+}
+
+.project-action.secondary {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+}
+
+.project-action.secondary:hover {
+    background: var(--bg-secondary);
+    border-color: var(--primary);
+}
+
+/* Schedule Timeline - Улучшенные */
+.schedule-timeline {
+    margin-bottom: var(--space-2xl);
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.timeline-title {
+    font-size: clamp(var(--text-lg), 3vw, var(--text-xl));
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.timeline-controls {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 3fr;
+    gap: var(--space-md);
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.timeline-row {
+    display: contents;
+}
+
+.timeline-cell {
+    padding: var(--space-md);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.timeline-cell:last-child {
+    border-bottom: none;
+}
+
+.timeline-task {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.timeline-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.timeline-visual {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    gap: 2px;
+}
+
+.timeline-week {
+    height: 20px;
+    border-radius: var(--radius-sm);
+    background: var(--border-light);
+    transition: all var(--transition-fast);
+}
+
+.timeline-week.completed {
+    background: var(--success);
+}
+
+.timeline-week.in-progress {
+    background: var(--primary);
+}
+
+.timeline-week.planned {
+    background: var(--bg-secondary);
+    border: 1px dashed var(--border-medium);
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(var(--space-md));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-card,
+.timeline-grid {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Адаптивность для всех экранов */
+@media (max-width: 768px) {
+    .schedule-page {
+        padding: var(--space-lg);
+    }
+
+    .welcome-section {
+        padding: var(--space-lg);
+        margin-bottom: var(--space-lg);
+    }
+
+    .project-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+
+    .project-status {
+        align-self: flex-start;
+    }
+
+    .schedule-actions {
+        flex-direction: column;
+    }
+
+    .schedule-legend {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .project-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .timeline-cell {
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    .timeline-cell:nth-child(3n+1) {
+        background: var(--bg-secondary);
+        font-weight: 600;
+    }
+
+    .timeline-cell:nth-child(3n+2),
+    .timeline-cell:nth-child(3n+3) {
+        padding-left: var(--space-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .schedule-page {
+        padding: var(--space-md);
+    }
+
+    .welcome-section,
+    .project-card {
+        padding: var(--space-lg);
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+
+    .timeline-controls {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 320px) {
+    .schedule-page {
+        padding: var(--space-sm);
+    }
+
+    .welcome-section,
+    .project-card {
+        padding: var(--space-md);
+        margin: 0 var(--space-2xs) var(--space-md);
+    }
+
+    .project-action {
+        padding: var(--space-sm);
+    }
+}
+
+/* Для очень больших экранов */
+@media (min-width: 1920px) {
+    .schedule-page {
+        padding: var(--space-2xl);
+    }
+
+    .welcome-section {
+        padding: var(--space-2xl);
+        margin-bottom: var(--space-2xl);
+    }
+
+    .project-card {
+        padding: var(--space-2xl);
+    }
+
+    .project-name {
+        font-size: var(--text-2xl);
+    }
+
+    .projects-grid {
+        gap: var(--space-xl);
+    }
+}
+
+/* Улучшенная доступность */
+button:focus-visible,
+.schedule-action-btn:focus-visible,
+.project-action:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Поддержка высокого контраста */
+@media (prefers-contrast: high) {
+    .project-card {
+        border: 2px solid var(--text-primary);
+    }
+
+    .progress-bar {
+        border: 1px solid var(--text-primary);
+    }
+}
+
+/* Поддержка уменьшения движения */
+@media (prefers-reduced-motion: reduce) {
+
+    .project-card,
+    .schedule-action-btn,
+    .project-action,
+    .task-tag,
+    .stat-item {
+        transition: none;
+        animation: none;
+    }
+
+    .project-card:hover,
+    .schedule-action-btn:hover,
+    .project-action:hover,
+    .task-tag:hover,
+    .stat-item:hover {
+        transform: none;
+    }
+}
+
+/* Fluid typography для идеального автоопределения */
+@media (max-width: 360px) {
+    .schedule-page {
+        font-size: var(--text-xs);
+    }
+}
+
+@media (min-width: 2000px) {
+    .schedule-page {
+        font-size: var(--text-lg);
+    }
+}
+
+/* Schedule Tabs */
+.schedule-tabs {
+    display: flex;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xs);
+    margin-bottom: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+}
+
+.schedule-tab {
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-width: min-content;
+}
+
+.schedule-tab:hover {
+    color: var(--primary);
+    background: var(--bg-secondary);
+}
+
+.schedule-tab.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Schedule.css - Календарный график Ганта для всех устройств */
+
+/* ===== GANTT CHART STYLES ===== */
+/* Основные стили для диаграммы Ганта с улучшенной семантикой и доступностью */
+
+/* Контейнер диаграммы Ганта */
+.gantt-container {
+    width: 100%;
+    overflow-x: auto;
+    /* Горизонтальная прокрутка для мобильных устройств */
+    overflow-y: hidden;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    position: relative;
+
+    /* Улучшение производительности прокрутки */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Основная сетка диаграммы Ганта */
+.gantt-chart {
+    display: grid;
+    grid-template-columns: 200px repeat(12, 1fr);
+    /* Фиксированная колонка для задач + 12 месяцев */
+    min-width: 1200px;
+    /* Минимальная ширина для сохранения читаемости */
+    width: 100%;
+}
+
+/* ===== ЗАГОЛОВОК ДИАГРАММЫ ===== */
+.gantt-header {
+    display: contents;
+    /* Используем CSS Grid раскладку */
+}
+
+/* Ячейки заголовка */
+.gantt-header-cell {
+    background: var(--primary);
+    color: white;
+    padding: var(--space-md);
+    font-weight: 600;
+    text-align: center;
+    border-right: 1px solid var(--primary-dark);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    /* Улучшение читаемости текста */
+    font-size: clamp(var(--text-xs), 1.8vw, var(--text-sm));
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Скругление углов для первой ячейки заголовка */
+.gantt-header-cell:first-child {
+    border-radius: var(--radius-lg) 0 0 0;
+}
+
+/* Скругление углов для последней ячейки заголовка */
+.gantt-header-cell:last-child {
+    border-radius: 0 var(--radius-lg) 0 0;
+}
+
+/* ===== СТРОКИ ЗАДАЧ ===== */
+.gantt-task-row {
+    display: contents;
+    /* Элементы становятся частью grid-раскладки */
+    animation: slide-in-gantt 0.3s ease-out;
+}
+
+/* Ячейки с названиями задач */
+.gantt-task-cell {
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+
+    /* Улучшение типографики */
+    font-size: clamp(var(--text-sm), 2vw, var(--text-base));
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-primary);
+    hyphens: auto;
+    /* Автоматические переносы слов */
+    word-wrap: break-word;
+}
+
+/* Фиксированная первая ячейка с названием задачи */
+.gantt-task-cell:first-child {
+    position: sticky;
+    left: 0;
+    background: var(--bg-surface);
+    z-index: 10;
+    border-right: 2px solid var(--border-medium);
+    font-weight: 600;
+
+    /* Улучшение контраста для sticky элемента */
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== ВРЕМЕННЫЕ ЯЧЕЙКИ ===== */
+.gantt-timeline-cell {
+    padding: 0;
+    border-bottom: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-light);
+    position: relative;
+    min-height: 60px;
+}
+
+/* ===== ЭЛЕМЕНТЫ ДИАГРАММЫ (БАРЫ) ===== */
+/* Контейнер для баров задач */
+.gantt-bar-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Базовые стили для баров задач */
+.gantt-bar {
+    position: absolute;
+    height: 30px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: white;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    z-index: 5;
+
+    /* Улучшение доступности */
+    user-select: none;
+}
+
+/* Состояние при наведении */
+.gantt-bar:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Статус: Выполнено */
+.gantt-bar.completed {
+    background: linear-gradient(135deg, var(--success) 0%, var(--success-light) 100%);
+}
+
+/* Статус: В работе */
+.gantt-bar.in-progress {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    animation: pulse-gantt 2s infinite;
+}
+
+/* Статус: Запланировано */
+.gantt-bar.planned {
+    background: linear-gradient(135deg, var(--warning) 0%, var(--warning-light) 100%);
+}
+
+/* Статус: Задержка */
+.gantt-bar.delayed {
+    background: linear-gradient(135deg, var(--danger) 0%, var(--danger-light) 100%);
+}
+
+/* Индикатор прогресса внутри бара */
+.gantt-bar-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.3);
+    transition: width 0.5s ease;
+}
+
+/* Текст внутри бара */
+.gantt-bar-label {
+    flex: 1;
+    text-align: center;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+    /* Предотвращение переноса текста */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ===== СЕТКА ДИАГРАММЫ ===== */
+.gantt-grid {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    /* Соответствует ширине колонки с задачами */
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    pointer-events: none;
+    /* Сетка не перехватывает события мыши */
+    z-index: 1;
+}
+
+/* Ячейки сетки */
+.gantt-grid-cell {
+    border-right: 1px solid var(--border-light);
+}
+
+/* Текущая ячейка сетки */
+.gantt-grid-cell.current {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+/* ===== ЛИНИЯ ТЕКУЩЕЙ ДАТЫ ===== */
+.gantt-current-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--danger);
+    z-index: 15;
+    pointer-events: none;
+}
+
+/* Маркер текущей даты */
+.gantt-current-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -3px;
+    width: 8px;
+    height: 8px;
+    background: var(--danger);
+    border-radius: 50%;
+}
+
+/* ===== ВЕХИ (MILESTONES) ===== */
+.gantt-milestone {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--warning);
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+
+/* Подпись вехи */
+.gantt-milestone::after {
+    content: attr(data-milestone);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* ===== ЗАВИСИМОСТИ МЕЖДУ ЗАДАЧАМИ ===== */
+.gantt-dependency {
+    position: absolute;
+    height: 2px;
+    background: var(--text-secondary);
+    z-index: 4;
+}
+
+/* Стрелка зависимости */
+.gantt-dependency::before {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: -6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* ===== ЛЕГЕНДА ДИАГРАММЫ ===== */
+.gantt-legend {
+    display: flex;
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Элемент легенды */
+.gantt-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: clamp(var(--text-xs), 2vw, var(--text-sm));
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Цветовые индикаторы в легенде */
+.gantt-legend-color {
+    width: 20px;
+    height: 12px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+/* Цвета статусов в легенде */
+.gantt-legend-color.completed {
+    background: var(--success);
+}
+
+.gantt-legend-color.in-progress {
+    background: var(--primary);
+}
+
+.gantt-legend-color.planned {
+    background: var(--warning);
+}
+
+.gantt-legend-color.delayed {
+    background: var(--danger);
+}
+
+/* ===== ЭЛЕМЕНТЫ УПРАВЛЕНИЯ ===== */
+.gantt-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+/* Управление масштабом */
+.gantt-zoom-controls {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+}
+
+/* Кнопки масштабирования */
+.gantt-zoom-btn {
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.gantt-zoom-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.gantt-zoom-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Управление периодами */
+.gantt-period-controls {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+/* Кнопки периодов */
+.gantt-period-btn {
+    padding: var(--space-xs) var(--space-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.gantt-period-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.gantt-period-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* ===== АНИМАЦИИ ===== */
+/* Пульсация для задач в работе */
+@keyframes pulse-gantt {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+/* Появление строк с анимацией */
+@keyframes slide-in-gantt {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ ===== */
+
+/* Планшеты и маленькие десктопы */
+@media (max-width: 1200px) {
+    .gantt-chart {
+        min-width: 1000px;
+        grid-template-columns: 180px repeat(12, 1fr);
+    }
+
+    .gantt-grid {
+        left: 180px;
+    }
+}
+
+/* Планшеты и большие телефоны */
+@media (max-width: 768px) {
+    .gantt-container {
+        border-radius: var(--radius-md);
+        margin: 0 calc(-1 * var(--space-md));
+        width: calc(100% + 2 * var(--space-md));
+    }
+
+    .gantt-chart {
+        min-width: 800px;
+        grid-template-columns: 150px repeat(12, 1fr);
+    }
+
+    .gantt-grid {
+        left: 150px;
+    }
+
+    .gantt-task-cell {
+        padding: var(--space-sm);
+        min-height: 50px;
+        font-size: var(--text-sm);
+    }
+
+    .gantt-header-cell {
+        padding: var(--space-sm);
+        font-size: var(--text-sm);
+    }
+
+    .gantt-bar {
+        height: 25px;
+        font-size: 0.6rem;
+    }
+
+    .gantt-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gantt-zoom-controls,
+    .gantt-period-controls {
+        justify-content: center;
+    }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+    .gantt-chart {
+        min-width: 700px;
+        grid-template-columns: 120px repeat(12, 1fr);
+    }
+
+    .gantt-grid {
+        left: 120px;
+    }
+
+    .gantt-task-cell {
+        padding: var(--space-xs);
+        min-height: 45px;
+        font-size: var(--text-xs);
+    }
+
+    .gantt-header-cell {
+        padding: var(--space-xs);
+        font-size: var(--text-xs);
+    }
+
+    .gantt-bar {
+        height: 20px;
+        font-size: 0.5rem;
+        padding: 0 var(--space-xs);
+    }
+
+    .gantt-legend {
+        gap: var(--space-md);
+        padding: var(--space-sm);
+    }
+
+    .gantt-legend-item {
+        font-size: var(--text-xs);
+    }
+}
+
+/* Очень маленькие экраны в портретной ориентации */
+@media (max-width: 360px) and (orientation: portrait) {
+    .gantt-chart {
+        min-width: 650px;
+        grid-template-columns: 100px repeat(12, 1fr);
+    }
+
+    .gantt-grid {
+        left: 100px;
+    }
+
+    .gantt-task-cell {
+        min-height: 40px;
+        font-size: 0.7rem;
+    }
+
+    .gantt-bar {
+        height: 18px;
+        font-size: 0.45rem;
+    }
+}
+
+/* Ландшафтная ориентация для мобильных */
+@media (max-width: 900px) and (orientation: landscape) {
+    .gantt-chart {
+        min-width: 900px;
+        grid-template-columns: 160px repeat(12, 1fr);
+    }
+
+    .gantt-grid {
+        left: 160px;
+    }
+
+    .gantt-task-cell {
+        min-height: 45px;
+    }
+
+    .gantt-bar {
+        height: 22px;
+    }
+}
+
+/* ===== УЛУЧШЕННЫЙ СКРОЛЛБАР ===== */
+.gantt-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.gantt-container::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+}
+
+.gantt-container::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--radius-lg);
+}
+
+.gantt-container::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong);
+}
+
+/* ===== ВСПЛЫВАЮЩИЕ ПОДСКАЗКИ ===== */
+.gantt-tooltip {
+    position: absolute;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+
+    /* Улучшение читаемости */
+    line-height: 1.4;
+    max-width: 200px;
+}
+
+.gantt-bar:hover .gantt-tooltip {
+    opacity: 1;
+}
+
+/* ===== СТИЛИ ДЛЯ ПЕЧАТИ ===== */
+@media print {
+    .gantt-container {
+        overflow: visible;
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+
+    .gantt-chart {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .gantt-controls {
+        display: none;
+    }
+
+    /* Улучшение читаемости при печати */
+    .gantt-bar {
+        border: 1px solid #000;
+    }
+}
+
+/* ===== РЕЖИМ ВЫСОКОГО КОНТРАСТА ===== */
+@media (prefers-contrast: high) {
+    .gantt-bar {
+        border: 1px solid #000;
+    }
+
+    .gantt-grid-cell {
+        border-right: 2px solid #000;
+    }
+
+    .gantt-current-line {
+        background: #000;
+        width: 3px;
+    }
+}
+
+/* ===== РЕЖИМ УМЕНЬШЕНИЯ ДВИЖЕНИЯ ===== */
+@media (prefers-reduced-motion: reduce) {
+
+    .gantt-bar,
+    .gantt-task-row {
+        transition: none;
+        animation: none;
+    }
+
+    .gantt-bar:hover {
+        transform: none;
+    }
+}

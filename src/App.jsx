@@ -58,10 +58,22 @@ function App() {
     setCurrentPage('home');
   };
 
+  // Функция для выхода (возврата на главную)
+  const handleLogout = () => {
+    setCurrentPage('home');
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'foreman':
-        return <Foreman onBack={handleBackToHome} isDarkTheme={isDark} onToggleTheme={toggleTheme} />;
+        return (
+          <Foreman
+            onBack={handleBackToHome}
+            isDarkTheme={isDark}
+            onToggleTheme={toggleTheme}
+            onLogout={handleLogout} // Добавляем этот пропс
+          />
+        );
       case 'control':
         return <ControlService onBack={handleBackToHome} isDarkTheme={isDark} onToggleTheme={toggleTheme} />;
       case 'inspector':

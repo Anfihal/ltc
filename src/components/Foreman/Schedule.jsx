@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import './Schedule.css';
 
 const Schedule = () => {
-    const [activeTab, setActiveTab] = useState('general'); // general / objects
+    const [activeTab, setActiveTab] = useState('general');
 
     // Данные для общего графика работ
     const scheduleData = [
@@ -123,100 +124,131 @@ const Schedule = () => {
     );
 };
 
-// Компонент общего графика работ
 const GeneralSchedule = ({ scheduleData, onEdit, onMarkCompletion }) => {
-    const totalWeeks = 12;
+    const totalMonths = 12;
+    const currentWeek = 3; // Текущая неделя для демонстрации
+
+    // Данные для графика Ганта
+    const ganttData = [
+        { task: 'Подготовка территории', start: 0, duration: 2, progress: 100, status: 'completed' },
+        { task: 'Фундамент', start: 2, duration: 4, progress: 100, status: 'completed' },
+        { task: 'Кладка стен', start: 6, duration: 6, progress: 80, status: 'in-progress' },
+        { task: 'Кровля', start: 12, duration: 3, progress: 30, status: 'in-progress' },
+        { task: 'Отделка', start: 15, duration: 4, progress: 0, status: 'planned' },
+        { task: 'Ландшафт', start: 19, duration: 2, progress: 0, status: 'planned' },
+    ];
+
+    const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
 
     return (
         <div className="general-schedule">
-            <div className="schedule-section">
-                <div className="section-header">
-                    <h3 className="section-title">Общий график работ</h3>
-                    <p className="section-subtitle">План-график выполнения работ по всем объектам</p>
-                </div>
+            <div className="section-header">
+                <h3 className="section-title">Календарный график работ</h3>
+                <p className="section-subtitle">Диаграмма Ганта</p>
+            </div>
 
-                <div className="schedule-table">
-                    {/* Header with weeks */}
-                    <div className="schedule-header">
-                        <div className="task-column">Задача</div>
-                        <div className="progress-column">Прогресс</div>
-                        <div className="timeline-column">
-                            <div className="weeks-grid">
-                                {Array.from({ length: totalWeeks }, (_, i) => (
-                                    <div key={i} className="week-header">
-                                        {i + 1} нед
-                                    </div>
-                                ))}
+            {/* Gantt Controls */}
+            <div className="gantt-controls">
+                <div className="gantt-zoom-controls">
+                    <button className="gantt-zoom-btn active">Месяцы</button>
+                    <button className="gantt-zoom-btn">Кварталы</button>
+                    <button className="gantt-zoom-btn">Недели</button>
+                </div>
+                <div className="gantt-period-controls">
+                    <button className="gantt-period-btn">2024</button>
+                    <button className="gantt-period-btn active">2025</button>
+                    <button className="gantt-period-btn">Все</button>
+                </div>
+                <div className="timeline-controls">
+                    <button className="schedule-action-btn" onClick={onEdit}>
+                        ✏️ Редактировать
+                    </button>
+                    <button className="schedule-action-btn secondary" onClick={onMarkCompletion}>
+                        ✅ Отметить выполнение
+                    </button>
+                </div>
+            </div>
+
+            {/* Gantt Chart */}
+            <div className="gantt-container">
+                <div className="gantt-chart">
+                    {/* Header */}
+                    <div className="gantt-header">
+                        <div className="gantt-header-cell">Задача</div>
+                        {months.map((month, index) => (
+                            <div key={index} className="gantt-header-cell">
+                                {month} 2024
                             </div>
-                        </div>
+                        ))}
                     </div>
 
-                    {/* Tasks */}
-                    {scheduleData.map((task, index) => (
-                        <div key={index} className="schedule-row">
-                            <div className="task-column">
-                                <div className="task-name">{task.task}</div>
+                    {/* Task Rows */}
+                    {ganttData.map((task, index) => (
+                        <div key={index} className="gantt-task-row">
+                            <div className="gantt-task-cell">
+                                {task.task}
                             </div>
-                            <div className="progress-column">
-                                <div className="progress-display">
-                                    <div className="progress-text">{task.progress}%</div>
-                                    <div className="progress-bar">
-                                        <div
-                                            className="progress-fill"
-                                            style={{ width: `${task.progress}%` }}
-                                        ></div>
+                            {Array.from({ length: totalMonths }, (_, monthIndex) => (
+                                <div key={monthIndex} className="gantt-timeline-cell">
+                                    <div className="gantt-bar-container">
+                                        {monthIndex >= task.start && monthIndex < task.start + task.duration && (
+                                            <div
+                                                className={`gantt-bar ${task.status}`}
+                                                style={{
+                                                    left: `${((monthIndex - task.start) / task.duration) * 100}%`,
+                                                    width: `${(1 / task.duration) * 100}%`
+                                                }}
+                                            >
+                                                <div
+                                                    className="gantt-bar-progress"
+                                                    style={{ width: `${task.progress}%` }}
+                                                />
+                                                <span className="gantt-bar-label">
+                                                    {task.progress}%
+                                                </span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                            </div>
-                            <div className="timeline-column">
-                                <div className="weeks-grid">
-                                    {Array.from({ length: totalWeeks }, (_, week) => {
-                                        const isInRange = week >= task.start && week < task.start + task.duration;
-                                        const isCompleted = week < task.start + (task.duration * task.progress / 100);
-
-                                        return (
-                                            <div
-                                                key={week}
-                                                className={`week-cell ${isInRange ? 'scheduled' : ''} ${isCompleted ? 'completed' : ''}`}
-                                                title={`Неделя ${week + 1}: ${isCompleted ? 'Выполнено' : isInRange ? 'Запланировано' : ''}`}
-                                            >
-                                                {isInRange && (
-                                                    <div className="task-bar">
-                                                        {isCompleted && <div className="completion-marker">✓</div>}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     ))}
                 </div>
 
-                <div className="schedule-actions">
-                    <button className="btn-primary" onClick={onEdit}>
-                        Редактировать график
-                    </button>
-                    <button className="btn-secondary" onClick={onMarkCompletion}>
-                        Отметить выполнение работ
-                    </button>
+                {/* Grid Lines */}
+                <div className="gantt-grid">
+                    {Array.from({ length: totalMonths }, (_, index) => (
+                        <div
+                            key={index}
+                            className={`gantt-grid-cell ${index === currentWeek ? 'current' : ''}`}
+                        />
+                    ))}
                 </div>
 
-                {/* Legend */}
-                <div className="schedule-legend">
-                    <div className="legend-item">
-                        <div className="legend-color completed"></div>
-                        <span>Выполнено</span>
-                    </div>
-                    <div className="legend-item">
-                        <div className="legend-color scheduled"></div>
-                        <span>Запланировано</span>
-                    </div>
-                    <div className="legend-item">
-                        <div className="legend-color"></div>
-                        <span>Не запланировано</span>
-                    </div>
+                {/* Current Date Line */}
+                <div
+                    className="gantt-current-line"
+                    style={{ left: `${(currentWeek / totalMonths) * 100}%` }}
+                />
+            </div>
+
+            {/* Gantt Legend */}
+            <div className="gantt-legend">
+                <div className="gantt-legend-item">
+                    <div className="gantt-legend-color completed"></div>
+                    <span>Выполнено</span>
+                </div>
+                <div className="gantt-legend-item">
+                    <div className="gantt-legend-color in-progress"></div>
+                    <span>В работе</span>
+                </div>
+                <div className="gantt-legend-item">
+                    <div className="gantt-legend-color planned"></div>
+                    <span>Запланировано</span>
+                </div>
+                <div className="gantt-legend-item">
+                    <div className="gantt-legend-color delayed"></div>
+                    <span>Задержка</span>
                 </div>
             </div>
         </div>
@@ -247,6 +279,16 @@ const ObjectsSchedule = ({ projects, onOpenProject }) => {
 
 // Компонент карточки проекта
 const ProjectCard = ({ project, onOpen }) => {
+    const getStatusClass = (status) => {
+        switch (status) {
+            case 'Активный': return 'active';
+            case 'Планирование': return 'planning';
+            case 'Завершен': return 'completed';
+            case 'Задержка': return 'delayed';
+            default: return 'planning';
+        }
+    };
+
     return (
         <div className="project-card">
             <div className="project-header">
@@ -255,7 +297,7 @@ const ProjectCard = ({ project, onOpen }) => {
                     <p className="project-address">{project.address}</p>
                     <p className="project-area">Площадь: {project.area}</p>
                 </div>
-                <span className={`project-status ${project.status === 'Активный' ? 'active' : 'planning'}`}>
+                <span className={`project-status ${getStatusClass(project.status)}`}>
                     {project.status}
                 </span>
             </div>
@@ -308,14 +350,26 @@ const ProjectCard = ({ project, onOpen }) => {
                     <div className="stat-number">{project.tasksCount}</div>
                     <div className="stat-label">Задачи</div>
                 </div>
+                <div className="stat-item">
+                    <div className="stat-number">{project.progress}%</div>
+                    <div className="stat-label">Прогресс</div>
+                </div>
             </div>
 
-            <button
-                className="project-action"
-                onClick={() => onOpen(project.id)}
-            >
-                Открыть объект, изменить или назначить исполнителя
-            </button>
+            <div className="project-actions">
+                <button
+                    className="project-action"
+                    onClick={() => onOpen(project.id)}
+                >
+                    📋 Открыть объект
+                </button>
+                <button
+                    className="project-action secondary"
+                    onClick={() => onOpen(project.id)}
+                >
+                    👥 Назначить исполнителя
+                </button>
+            </div>
         </div>
     );
 };

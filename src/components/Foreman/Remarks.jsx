@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Remarks.css'; // Добавьте эту строку импорта
 
 const Remarks = () => {
     const [activeTab, setActiveTab] = useState('received'); // received / fixed

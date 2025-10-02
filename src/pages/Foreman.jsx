@@ -1,86 +1,98 @@
+// Foreman.jsx
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Foreman/Header';
 import Sidebar from '../components/Foreman/Sidebar';
 import MainContent from '../components/Foreman/MainContent';
+import Objects from '../components/Foreman/Objects';
+import Remarks from '../components/Foreman/Remarks';
+import Schedule from '../components/Foreman/Schedule';
+import './Foreman.css';
 
-const Foreman = ({ onBack, isDarkTheme, onToggleTheme }) => {
-    const [activeTab, setActiveTab] = useState('main');
-    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-    const [isMobile, setIsMobile] = useState(false);
+const Foreman = ({ onBack, isDarkTheme, onToggleTheme, onLogout }) => {
+    const [currentSection, setCurrentSection] = useState('main');
+    const [isDark, setIsDark] = useState(isDarkTheme || false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+    // Синхронизируем тему с App.js
     useEffect(() => {
-        const updateScreenSize = () => {
-            const width = window.innerWidth;
-
-            setIsMobile(width < 1024);
-
-            document.documentElement.style.setProperty('--viewport-width', `${width}px`);
-            document.documentElement.style.setProperty('--viewport-height', `${window.innerHeight}px`);
-
-            // На мобильных устройствах сайдбар скрыт по умолчанию
-            if (width < 1024) {
-                setIsSidebarVisible(false);
-            } else {
-                setIsSidebarVisible(true);
-            }
-        };
-
-        updateScreenSize();
-        window.addEventListener('resize', updateScreenSize);
-
-        return () => {
-            window.removeEventListener('resize', updateScreenSize);
-        };
-    }, []);
-
-    useEffect(() => {
-        if (isDarkTheme) {
-            document.documentElement.classList.add('dark-theme');
-        } else {
-            document.documentElement.classList.remove('dark-theme');
-        }
+        setIsDark(isDarkTheme);
     }, [isDarkTheme]);
 
-    const handleLogout = () => {
-        onBack();
+    const handleToggleTheme = () => {
+        if (onToggleTheme) {
+            onToggleTheme();
+        } else {
+            setIsDark(!isDark);
+        }
     };
 
     const toggleSidebar = () => {
-        setIsSidebarVisible(!isSidebarVisible);
+        setIsSidebarOpen(!isSidebarOpen);
     };
 
-    const handleTabChange = (tabId) => {
-        setActiveTab(tabId);
-        // На мобильных устройствах закрываем сайдбар после выбора вкладки
-        if (isMobile) {
-            setIsSidebarVisible(false);
+    const closeSidebar = () => {
+        setIsSidebarOpen(false);
+    };
+
+    const handleLogout = () => {
+        console.log('Выход из системы...');
+        // Сначала пробуем использовать onLogout, если передан
+        if (typeof onLogout === 'function') {
+            onLogout();
+        }
+        // Если onLogout не передан, используем onBack
+        else if (typeof onBack === 'function') {
+            onBack();
+        }
+        // Fallback
+        else {
+            console.log('Возврат на главную страницу');
+            window.location.reload();
+        }
+    };
+
+    // Блокировка скролла при открытом меню
+    useEffect(() => {
+        if (isSidebarOpen) {
+            document.body.classList.add('mobile-menu-open');
+        } else {
+            document.body.classList.remove('mobile-menu-open');
+        }
+    }, [isSidebarOpen]);
+
+    // Рендер контента в зависимости от выбранной секции
+    const renderContent = () => {
+        switch (currentSection) {
+            case 'objects':
+                return <Objects />;
+            case 'remarks':
+                return <Remarks />;
+            case 'schedule':
+                return <Schedule />;
+            case 'main':
+            default:
+                return <MainContent />;
         }
     };
 
     return (
-        <div className={`foreman-app ${isDarkTheme ? 'dark-theme' : ''}`}>
+        <div className={`foreman-dashboard ${isDark ? 'dark-theme' : ''}`}>
             <Header
+                onToggleTheme={handleToggleTheme}
+                isDark={isDark}
                 onLogout={handleLogout}
                 onToggleSidebar={toggleSidebar}
-                onToggleTheme={onToggleTheme}
-                isDarkTheme={isDarkTheme}
-                isSidebarVisible={isSidebarVisible}
             />
-
-            <div className="foreman-layout">
-                <div className={`sidebar-overlay ${isSidebarVisible && isMobile ? 'active' : ''}`}
-                    onClick={() => setIsSidebarVisible(false)}></div>
-
+            <div className="dashboard-content">
                 <Sidebar
-                    activeTab={activeTab}
-                    onTabChange={handleTabChange}
-                    isMobileOpen={isSidebarVisible && isMobile}
+                    currentSection={currentSection}
+                    onSectionChange={setCurrentSection}
+                    isSidebarOpen={isSidebarOpen}
+                    onSidebarClose={closeSidebar}
                 />
-
-                <MainContent
-                    activeTab={activeTab}
-                    isSidebarVisible={isSidebarVisible}
-                />
+                <main className="main-section">
+                    {renderContent()}
+                </main>
             </div>
         </div>
     );

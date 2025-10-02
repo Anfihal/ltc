@@ -1,0 +1,210 @@
+.header {
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    width: 100%;
+    max-width: 100%;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* Кнопка бургер-меню */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: var(--space-sm);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    height: 2px;
+    width: 20px;
+    background: currentColor;
+    margin: 2px 0;
+    transition: 0.3s;
+    border-radius: 1px;
+}
+
+.mobile-menu-btn:hover {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: var(--space-sm);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    transform: scale(1.05);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    border: 2px solid var(--border-color);
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.user-role {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.logout-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.logout-btn:hover {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+    .header {
+        height: 60px;
+    }
+
+    .header-content {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .logo-text {
+        font-size: 1.125rem;
+    }
+
+    .user-details {
+        display: none;
+    }
+
+    .header-right {
+        gap: var(--space-sm);
+    }
+
+    /* Показываем кнопку меню на мобильных */
+    .mobile-menu-btn {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .theme-toggle-btn,
+    .logout-btn {
+        padding: var(--space-xs);
+        width: 36px;
+        height: 36px;
+    }
+
+    .mobile-menu-btn {
+        width: 36px;
+        height: 36px;
+        padding: var(--space-xs);
+    }
+
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+}
